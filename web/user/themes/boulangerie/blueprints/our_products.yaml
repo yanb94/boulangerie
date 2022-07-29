@@ -1,0 +1,47 @@
+title: Nos produits
+'@extends':
+    type: default
+    context: blueprints://pages
+form:
+  validation: strict
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+      fields:
+        content:
+          type: tab
+          title: Contenu
+          fields:
+            content:
+              unset@: true
+            header.media_order:
+              unset@: true
+            header.title: 
+              type: text
+              label: Titre de la page
+              style: vertical
+              validate:
+                required: true
+            header.description: 
+              type: text
+              label: Description
+              style: vertical
+              validate:
+                required: true
+            header.button_text: 
+              type: text
+              label: Texte du bouton
+              style: vertical
+              validate:
+                required: true
+            header.onpage_menu:
+              type: toggle
+              label: Page dans le menu
+              style: vertical
+              highlight: 1
+              options:
+                true: Oui
+                false: Non
+              validate:
+                type: bool

@@ -1,0 +1,153 @@
+@import "app.scss";
+
+.footer
+{
+    background-color: $primary-very-dark;
+    min-height: 300px;
+    display: grid;
+    grid-template-rows: auto 30px;
+    
+    .footer-row-one
+    {
+        display: grid;
+        grid-template-columns: 50% 50%;
+    }
+
+    .copyright
+    {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        color: $secondary-very-light;
+        font-size: 15px;
+        font-family: "Poly";
+    }
+
+    .logo-footer
+    {
+        font-family: "Redressed";
+        font-size: 35px;
+    }
+
+    .action
+    {
+        padding: 30px;
+        color: $secondary-very-light;
+        
+
+        .list-action
+        {
+            padding: 0;
+            list-style: none;
+
+            li
+            {
+                margin-bottom: 15px;
+            }
+
+            li:last-of-type
+            {
+                margin-bottom: 0;
+            }
+
+            li > a{
+                text-decoration: none;
+                color: $secondary-very-light;
+                font-family: "Poly";
+                font-size: 20px;
+            }
+        }
+    }
+
+    .info
+    {
+        padding: 30px;
+        color: $secondary-very-light;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Poly";
+
+        .info-cont
+        {
+            height: 100%;
+            width: 350px;
+
+            .list-info
+            {
+                list-style: none;
+                padding: 0;
+
+                display: grid;
+                grid-template-columns: 35% 65%;
+                margin-top: 15px;
+                row-gap: 20px;
+
+                .label
+                {
+                    font-size: 20px;
+                    height: 25px;
+                    display: flex;
+                    align-items: center;
+                }
+
+                .data
+                {
+                    font-size: 15px;
+                    height: 25px;
+                    display: flex;
+                    align-items: center;
+                }
+                
+            }            
+        }
+    }
+}
+
+@media(max-width: $breakPointS)
+{
+    .footer
+    {
+        .footer-row-one
+        {
+            grid-template-columns: 100%;
+        }
+
+        .action
+        {
+            display: none;
+        }
+
+        .info
+        {
+            .info-cont
+            {
+                width: 100%;
+            }
+        }
+    }
+}
+
+@media(max-width: 320px)
+{
+    .footer
+    {
+        .info
+        {
+            .info-cont
+            {
+                .list-info
+                {
+                    grid-template-columns: 100%;   
+                    row-gap: 0;
+
+                    .data
+                    {
+                        margin-bottom: 10px;
+                    }
+                }
+            }
+        }
+    }
+}

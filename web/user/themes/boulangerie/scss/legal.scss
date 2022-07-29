@@ -1,0 +1,109 @@
+@import "app.scss";
+
+.legal
+{
+    min-height: calc(100vh - 100px);
+    background-color: $primary-dark;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 60px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 60px;
+
+    .legal-card
+    {
+        max-width: 1000px;
+        width: 100%;
+        background-color: $primary-main;
+        min-height: 500px;
+        padding: 30px;
+
+        h1
+        {
+            color: $tertiary-very-dark;
+            font-size: 70px;
+            font-family: "Redressed";
+            margin:0;
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: normal;
+        }
+
+        h2,h3,h4,h5,h6
+        {
+            font-family: "Redressed";
+            color: $tertiary-very-dark;
+            font-weight: normal;
+        }
+
+        h2
+        {
+            font-size: 40px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        p
+        {
+            font-family: "Poly";
+            color: $tertiary-very-dark;
+            font-size: 25px;
+            text-align: justify;
+        }
+
+        a
+        {
+            font-weight: bold;
+            color: $tertiary-very-dark;
+            transition: 0.5s;
+
+            &:hover
+            {
+                color: $secondary-very-light;
+            }
+        }
+
+        img
+        {
+            max-width: 100%;
+            margin: 15px 0;
+        }
+
+    }
+}
+
+@media (max-width: $breakPointS)
+{
+    .legal
+    {
+        min-height: calc(100vh - 50px);
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+}
+
+@media(max-width: 430px)
+{
+    .legal
+    {
+        .legal-card
+        {
+            h1
+            {
+                font-size: 50px;
+            }
+
+            h2
+            {
+                font-size: 30px;
+            }
+
+            p
+            {
+                font-size: 20px;
+            }
+        }
+    }
+}

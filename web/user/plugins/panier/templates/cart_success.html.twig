@@ -1,0 +1,22 @@
+{% extends 'partials/base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {% do assets.addCss('/user/plugins/panier/assets/css/cart_success.css', 97) %}
+{% endblock %}
+
+{% block body %}
+    <section id="body">
+        <div class="success-front">
+            <div class="card">
+                <h1>{{ page.header.title|e }}</h1>
+                <div class="msg">
+                    <p>
+                        {{ page.header.content|raw }}
+                    </p>
+                </div>
+                <a class="button" href="{{ page.header.url|e }}">{{ page.header.url_label|e }}</a>
+            </div>
+        </div>
+    </section>
+{% endblock %}

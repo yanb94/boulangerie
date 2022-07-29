@@ -1,0 +1,35 @@
+{% extends 'partials/base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    {% do assets.addCss('theme://css-compiled/formdata.css', 97) %}
+{% endblock %}
+
+{% if form is null %}
+    {% set form = grav.session.getFlashObject('form') %}
+{% endif  %}
+
+{% if form.status == "error" %}
+    {% set title = page.header.title_error|e %}
+    {% set message = page.header.message_error|e %}
+{% elseif form.status == "success" %}
+    {% set title = page.header.title|e %}
+    {% set message = page.header.message|e %}
+{% else %}
+    {% set title = page.header.title_lost|e %}
+    {% set message = page.header.message_lost|e %}
+{% endif %}
+
+{% block content %}
+    <div class="formdata">
+        <div class="card">
+            <h1>
+                {{ title|e }}
+            </h1>
+            <div class="msg"><p>{{ message|e }}</p></div>
+            <a href="/" class="button">
+                Revenir a l'accueil
+            </a>
+        </div>
+    </div>
+    
+{% endblock %}

@@ -1,0 +1,314 @@
+@import "app.scss";
+
+.about
+{
+    background-color: $primary-dark;
+    min-height: calc(100vh - 100px);
+    position: relative;
+    display: flex;
+
+    .image
+    {
+        position: absolute;
+        width: 70%;
+        z-index: 2;
+        left:0;
+        background-image: url('./../images/about.jpg');
+        background-size: cover;
+        height: 100%;
+    }
+
+    .color
+    {
+        position: absolute;
+        width: 70%;
+        z-index: 3;
+        background-color: rgba($primary-dark, .7);
+        right:0;
+        height: 100%;
+    }
+
+    .content
+    {
+        position: relative;
+        z-index: 4;
+        display: grid;
+        grid-template-columns: 50% 50%;
+        left: 0;
+        width: 100%;
+
+        .info
+        {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .card
+            {
+                background-color: $primary-main;
+                width: 400px;
+                min-height: 300px;
+                padding: 30px;
+
+                h1
+                {
+                    color: $tertiary-very-dark;
+                    margin: 0;
+                    font-size: 70px;
+                    font-family: "Redressed";
+                }
+
+                p
+                {
+                    color: $tertiary-very-dark;
+                    font-family: "Poly";
+                    font-size: 20px;
+                    text-align: justify;
+                }
+            }
+        }
+
+        .team
+        {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .card
+            {
+                min-height: 300px;
+                width: 400px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                background-color: rgba($tertiary-dark, .7);
+                padding: 30px;
+
+                h2
+                {
+                    color: $secondary-very-light;
+                    font-family: "Redressed";
+                    font-size: 60px;
+                    margin:0;
+                    margin-bottom: 15px;
+                }
+
+                .list
+                {
+                    display: grid;
+                    grid-template-columns: 50% 50%;
+                    gap: 30px;
+
+                    $anim-dur: 1200ms;
+                    $anim-delay: $anim-dur / 4;
+
+                    .person
+                    {
+                        min-height:150px;
+                        width: 150px;
+
+                        transform: translateX(-100px) translateY(-50px);
+                        opacity: 0;
+
+                        animation: appear $anim-dur ease-in-out forwards;
+
+                        @for $i from 1 through 4 {
+                            &--#{$i} {
+                                animation-delay: $anim-delay * $i;
+                            }
+                        }
+
+                        img
+                        {
+                            height: 150px;
+                            width: 150px;
+                            border-radius: 100px;
+                            object-fit: cover;
+                        }
+
+                        .name
+                        {
+                            color: $secondary-very-light;
+                            font-family: "Poly";
+                            text-align: center;
+                            margin:0;
+                            margin-top: 10px;
+                        }
+
+                        .job
+                        {
+                            font-family: "Redressed";
+                            color: $secondary-very-light;
+                            text-align: center;
+                            margin:0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+@media(max-width: $breakPointXL)
+{
+    .about
+    {
+        .image
+        {
+            background-image: url('./../images/aboutXL.jpg');
+        }
+    }
+}
+
+@media(max-width: $breakPointL)
+{
+    .about
+    {
+        .color
+        {
+            width: 80%;
+        }
+
+        .image
+        {
+            width: 80%;
+            background-image: url('./../images/aboutL.jpg');
+        }
+
+        .content
+        {
+            padding: 60px;
+            row-gap: 60px;
+            grid-template-columns: 100%;
+
+            .info
+            {
+                justify-content: flex-start;
+            }
+
+            .team
+            {
+                justify-content: flex-end;
+            }
+        }
+    }
+}
+
+@media(max-width: $breakPointM)
+{
+    .about
+    {
+        .color
+        {
+            width: 100%;
+        }
+
+        .image
+        {
+            width: 100%;
+            background-image: url('./../images/aboutM.jpg');
+        }
+
+        .content
+        {
+            padding: 30px;
+            .info
+            {
+                justify-content: center;
+            }
+
+            .team
+            {
+                justify-content: center;
+            }
+        }
+    }
+}
+
+@media(max-width: $breakPointS)
+{
+    .about
+    {
+        min-height: calc(100vh - 50px);
+
+        .image
+        {
+            background-image: url('./../images/aboutS.jpg');
+        }
+
+        .content
+        {
+            padding: 0;
+            padding-top: 30px;
+            padding-bottom: 30px;
+        }
+    }
+}
+
+@media(max-width: 400px)
+{
+    .about{
+        .content
+        {
+            .info
+            {
+                .card
+                {
+                    width: calc(100% - 60px);
+
+                    h1
+                    {
+                        font-size: 60px;
+                    }
+                }
+            }
+
+            .team
+            {
+                .card
+                {
+                    width: calc(100% - 60px);
+
+                    h2
+                    {
+                        font-size: 50px;
+                    }
+
+                    .list
+                    {
+                        gap: 20px;
+
+                        .person
+                        {
+                            min-height: 120px;
+                            width: 120px;
+
+                            img
+                            {
+                                height: 120px;
+                                width: 120px;
+                            }
+                        }
+                    }
+                }
+            }
+        }  
+    } 
+}
+
+@keyframes appear
+{
+    0%
+    {
+        transform: translateX(-100px) translateY(-50px);
+        opacity: 0;
+    }
+
+    100%
+    {
+        transform: translateX(0) translateY(0);
+        opacity: 1;
+    }
+}

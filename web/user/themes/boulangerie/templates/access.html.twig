@@ -1,0 +1,59 @@
+{% extends 'partials/base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {% do assets.addCss('theme://css-compiled/access.css', 97) %}
+    {% do assets.addCss('https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.4.3/css/ol.css',97) %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% do assets.addJS('https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.4.3/build/ol.js',{'group':'bottom'}) %}
+    {% do assets.addJs('theme://js/map.js',{'group':"bottom"}) %}
+{% endblock %}
+
+{% block body %}
+<section id="body">
+    <div class="access">
+        <div class="image"></div>
+        <div class="color"></div>
+        <div class="content">
+            <div class="info">
+                <div class="card">
+                    <h1>{{ page.header.title_card|e }}</h1>
+                    <p class="adress">Notre adresse : {{ site.info.address|e }}</p>
+                    <div class="transport">
+                        <h2>Accès en transport</h2>
+                        {% for item in page.header.transport %}
+                            <div class="item">
+                                <span class="label">{{ item.name|e }}: </span>
+                                <span class="data">{{ item.localisation|e }}</span>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="itineraire">
+                        <h2>Trouver un itinéraire</h2>
+                        {% for item in page.header.itineraire_link %}
+                            <div class="item">
+                                <a href="{{ item.link|e }}" target="_blank">{{ item.name|e }}</a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="map">
+                <div id="map"></div>
+            </div>
+        </div>
+    </div>
+</section>
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "{{ page.header.title|e }}",
+        "description": "{{ page.header.metadata.description|e }}",
+        "url": "{{ base_url }}/access"
+    }
+</script>
+{% endblock %}

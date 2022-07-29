@@ -1,0 +1,81 @@
+{% extends 'partials/base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {% do assets.addCss("/user/plugins/panier/assets/css/order.css") %}
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    {% do assets.addJs("/user/plugins/panier/assets/js/order.js" , { 'loading':'defer' }) %}
+{% endblock %}
+
+{% block titlebar %}
+    <div class="button-bar">
+        <a class="button" href="/user/data/factures/{{ order.id|e }}.pdf" target="_blank"><i class="fa fa-file-text-o"></i> Facture</a>
+        <a class="button" href="/admin/invoices"><i class="fa fa-reply"></i> Retour</a>    
+    </div>
+    <h1><i class="fa fa-fw fa-file-text-o"></i> {{page.header.title}}</h1>
+{% endblock %}
+
+{% block content %}
+    {% if flash.success is not null %}
+        <div class="flash-info success">
+            {{ flash.success }}
+        </div>
+    {% endif %}
+    {% if flash.error is not null %}
+        <div class="flash-info error">
+            {{ flash.error }}
+        </div>
+    {% endif %}
+    <div class="order">
+        <div class="order_title">
+            <h1>{{ "Commande " ~ order.factureNumero|e }}</h1>
+        </div>
+        <div class="order_info">
+            <div class="client">
+                <b>Client:</b> {{ order.firstname ~ " " ~ (order.lastname|upper)|e }}
+            </div>
+            <div class="statut">
+                <b>Statut:</b> {{ order.statutText|e }}
+            </div>
+            <div class="date">
+                {% set months = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"] %}
+                <b>Date:</b> {{ facture.created_at|date("d","Europe/Paris") }} {{ months[facture.created_at|date("n") - 1]|e }} {{ facture.created_at|date("Y à H:i","Europe/Paris") }}
+            </div>
+        </div>
+        {% for row in order.rows %}
+            <div class="row">
+                <div class="photo">
+                    <img src="{{ row.photo|e }}" alt="">
+                </div>
+                <div class="info_order">
+                    <div class="title">{{ row.name|e }}</div>
+                    <div class="other_info">
+                        <div class="ref_product">{{ row.ref|e }}</div>
+                        <div class="price_unit">Prix Unitaire: {{ row.price|number_format(2)|e }}€</div>
+                        <div class="quantity">Quantité: {{ row.quantity|e }}</div>
+                    </div>
+                </div>
+                <div class="total_order">
+                    Prix total<br>{{ (row.quantity * row.price)|number_format(2)|e }}€
+                </div>
+            </div> 
+        {% endfor %}
+        <div class="final_order">
+            <div class="ht"><span class="label_final">Prix HT</span> <span class="price_final">{{ order.getPrice_ht|number_format(2)|e }}€</span></div>
+            <div class="tva"><span class="label_final">TVA ({{ order.getTva|number_format(1)|e }}%)</span> <span class="price_final">{{ order.vat|number_format(2)|e }}€</span></div>
+            <div class="ttc"><span class="label_final">Prix TTC</span> <span class="price_final">{{order.getPrice_ttc|number_format(2)|e }}€</span></div>
+        </div>
+        {% if order.statut == 'payed' or order.statut != 'refund'%}
+            <div class="order_buttons">
+                {% if order.statut == 'payed' %}
+                    <a href="/admin/order/validate/{{order.id}}" id="deliver" class="btn-action">Commande Livré</a>
+                {% endif %}
+                {% if order.statut != 'refund' %}
+                    <a id="refund" href="/admin/order/refund/{{order.id}}" class="btn-action">Rembourser</a>
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

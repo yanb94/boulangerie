@@ -1,0 +1,7 @@
+enabled: true
+text_var: Custom Text added by the **Panier** plugin (disable plugin to remove)
+active: true
+route: /panier
+filters:
+    type: product
+vat: 20.6

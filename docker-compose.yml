@@ -1,0 +1,49 @@
+version: "3.8"
+services: 
+  varnish:
+    build: ./varnish
+    depends_on: 
+      - apache
+  apache:
+    build: ./apache
+    volumes: 
+      - ./web:/var/www/html
+    ports:
+      - "443:443"
+      - "80:80"
+    depends_on: 
+      - php-fpm
+      - mysql
+      - redis
+  php-fpm:
+    build: ./php-fpm
+    environment: 
+      - OPCACHE_REVALIDATE=${OPCACHE_REVALIDATE}
+    volumes: 
+      - ./web:/var/www/html
+    ports: 
+      - "9000:9001"
+  mysql:
+    image: mysql:8
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_DATABASE: boulangerie
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql/data:/var/lib/mysql
+  redis:
+    image: redis:6-alpine
+    ports:
+     - "6379:6379"
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+    depends_on:
+      - mysql
+  gotenberg:
+    image: thecodingmachine/gotenberg:6

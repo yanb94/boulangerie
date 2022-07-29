@@ -1,0 +1,22 @@
+title: "Le Bon Pain"
+default_lang: fr
+author:
+  name: "Yann-Élias BELLAGNECH"
+  email: 20875343+yanb94@users.noreply.github.com
+taxonomies:
+  - type
+metadata:
+  description: "Grav is an easy to use, yet powerful, open source flat-file CMS"
+summary:
+  enabled: true
+  format: short
+  size: 300
+  delimiter: "==="
+redirects: null
+routes: null
+blog:
+  route: /blog
+info:
+  address: "1,Rue du boulanger, 75000, Paris"
+  phone: "01 00 00 00 00"
+  email: contact@lebonpain.com

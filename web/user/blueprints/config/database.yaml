@@ -1,0 +1,34 @@
+form:
+  name: Base de donnée
+  validation: loose
+  fields:
+    content:
+      type: section
+      title: Base de donnée
+      underline: true
+      validate:
+        required: true
+
+    database.host:
+      type: text
+      label: "Hôte"
+      validate:
+        required: true
+
+    database.dbname:
+      type: text
+      label: "Base de donnée"
+      validate:
+        required: true
+
+    database.user:
+      type: text
+      label: "Nom d'utilisateur"
+      validate:
+        required: true
+
+    database.pass:
+      type: password
+      label: "Mot de passe"
+      validate:
+        required: true

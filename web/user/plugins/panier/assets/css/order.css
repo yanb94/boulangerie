@@ -1,0 +1,295 @@
+.admin-block
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.flash-info
+{
+    font-size: 20px;
+    width: 100%;
+    text-align: center;
+    margin-top: -1rem;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+.success
+{
+    background-color: #77559D;
+    color: white;
+}
+
+.error
+{
+    background-color: #d52929;
+    color: white;
+}
+
+.order 
+{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+    max-width: 700px;
+    width: 100%;
+    box-shadow: 1px 0px 2px silver, -1px 0px 2px silver;;
+}
+
+.order_title h1
+{
+    font-size: 35px!important;
+    font-weight: bold!important;
+    text-align: center!important;
+}
+
+.order_info
+{
+    width: 100%;
+    max-width: 700px;
+    padding: 20px;
+    border-bottom: 1px solid #f7f7f7;
+}
+
+.order_info .client
+{
+    font-size: 25px;
+}
+
+.order_info .date
+{
+    font-size: 25px;
+    margin-top: 15px;
+}
+
+.order_info .statut
+{
+    font-size: 25px;
+    margin-top: 15px;
+}
+
+.row
+{
+    max-width: 700px;
+    width: 100%;
+    border-bottom: 1px solid #3d424e3d;
+    margin-bottom: 15px;
+    display: grid;
+    grid-template-columns: 30% auto 25%;
+}
+
+.row .photo
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+.row .photo img
+{
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 100%;
+    box-shadow: 1px 1px 1px #3D424E;
+}
+
+.row .info_order
+{
+    display: grid;
+    grid-template-rows: 50px auto;
+    padding-left: 20px;
+    padding-top: 10px;
+}
+
+.row .info_order .title
+{
+    text-align: left;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.row .info_order .other_info
+{
+    font-size: 15px;
+}
+
+.row .total_order
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    text-align: center;
+}
+
+.final_order
+{
+    width: 100%;
+    max-width: 700px;
+    padding: 10px;
+}
+
+.final_order > *
+{
+    text-align: right;
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+.final_order > .ht
+{
+    font-size: 25px;
+}
+
+.final_order > .tva
+{
+    font-size: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.final_order > .ttc
+{
+    font-size: 30px;
+}
+
+.price_final
+{
+    margin-left: 20px;
+}
+
+.order_buttons
+{
+    padding: 20px;
+    border-top: 1px solid #3d424e3d;
+    width: 100%;
+    max-width: 700px;
+}
+
+.btn-action
+{
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    font-size: 20px;
+    transition: .5s;
+}
+
+.btn-action:nth-of-type(2)
+{
+    margin-top: 20px;
+}
+
+#deliver
+{
+    background-color: #06a599;
+    color: white!important;
+}
+
+#deliver:hover
+{
+    background-color: #056d64;
+}
+
+#refund
+{
+    background-color: #ff4d4d;
+    color: white!important;
+}
+
+#refund:hover
+{
+    background-color: #d52929;
+}
+
+@media(max-width: 600px)
+{
+    .row
+    {
+        grid-template-columns: 200px auto;
+        grid-template-rows: auto auto auto;
+    }
+
+    .row .info_order
+    {
+        padding-left: 0;
+        padding-top: 0;
+        grid-template-rows: 30px auto;
+    }
+
+    .row .info_order .title
+    {
+        text-align: left;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    
+    .row .info_order .other_info
+    {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    /*
+    .row .info_order .other_info > *
+    {
+        display: inline-block;
+        text-align: center;
+    }
+
+    .ref_product
+    {
+        width: 100%;
+    }
+
+    .price_unit, .quantity
+    {
+        width: 45%;
+        margin: 1.25%;
+        display: inline-flex!important;
+        align-items: center;
+        justify-content: center;
+        font-size: 17px;
+    } */
+
+    .row .total_order
+    {
+        margin-top: 15px;
+        font-size: 25px;
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 2;
+        grid-row-end: 3;
+    }
+}
+
+@media(max-width: 400px)
+{
+    .order_info > *
+    {
+        font-size: 16px!important;
+    }
+
+    .row
+    {
+        grid-template-columns: 120px auto;
+        grid-template-rows: auto auto auto;
+    }
+
+    .row .photo img
+    {
+        width: 90px;
+        height: 90px;
+    }
+}

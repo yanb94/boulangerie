@@ -1,0 +1,399 @@
+@import "app.scss";
+#viewPanier
+{
+    position: absolute;
+    transform: translateY(-100%);
+    z-index: 55;
+    height: 100vh;
+    position: fixed;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+    overflow-y: hidden;
+    padding-top: 60px;
+    padding-bottom: 30px;
+
+    .panier
+    {
+        position: relative;
+        min-height: 540px;
+        max-width: 500px;
+        background-color: $secondary-light;
+        border-radius: 25px;
+        padding: 30px;
+
+        display: grid;
+        grid-template-rows: 70px auto 150px 100px;
+        margin-bottom: 140px;
+
+        .close
+        {
+            color: $tertiary-very-dark;
+            font-size: 25px;
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            cursor: pointer;
+        }
+
+        .head
+        {
+            font-family: "Redressed";
+            font-size: 60px;
+            text-align: center;
+            color: $tertiary-very-dark;
+        }
+
+        .cont
+        {
+            color: $tertiary-very-dark;
+            border-top: 2px solid;
+            border-bottom: 2px solid;
+            margin: 15px 0px;
+
+            .empty
+            {
+                height: 400px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-family: "Redressed";
+                font-size: 25px;
+                text-align: center;
+            }
+
+            .list
+            {
+                // height: 600px;
+                .row
+                {
+                    height: 150px;
+                    display: grid;
+                    grid-template-columns: 30% 70%;
+                    position: relative;
+                    border-top: 1px solid;
+                    margin-top: 10px;
+                    padding: 5px;
+
+                    &:first-of-type
+                    {
+                        border: none;
+                    }
+
+                    .close
+                    {
+                        position: absolute;
+                        right: 10px;
+                        top: 10px;
+
+                        font-size: 25px;
+                        color: $tertiary-very-dark;
+                    }
+
+                    .image
+                    {
+                        display: flex;
+                        align-items: flex-start;
+                        padding-top: 10px;
+                        justify-content: center;
+
+                        img
+                        {
+                            object-fit: cover;
+                            width: 100px;
+                            height: 100px;
+                            border-radius: 100%;
+                            box-shadow: 2px 2px 1px $secondary-main;
+                        }
+                    }
+
+                    .info
+                    {
+                        .title
+                        {
+                            font-family: "Redressed";
+                            color: $tertiary-very-dark;
+                            font-size: 35px;
+                            padding: 10px 0;
+                        }
+
+                        .more
+                        {
+                            font-family: "Poly";
+                            display: grid;
+                            grid-template-columns: repeat(2, 50%);
+
+                            .price
+                            {
+                                margin-left: 20px;
+                                font-size: 30px;
+                                text-align: right;
+                            }
+
+                            .quantity
+                            {
+                                font-size: 25px;
+                                padding-top: 5px;
+                            }
+                        }
+
+                        .action
+                        {
+                            display: flex;
+                            margin-top: 10px;
+                            align-items: center;
+                            justify-content: flex-end;
+
+                            font-size: 20px;
+
+                            .less
+                            {
+                                background-color: $tertiary-very-dark;
+                                color: $secondary-very-light;
+                                padding: 5px;
+                                border-radius: 25px 0px 0px 25px;
+                                text-align: center;
+                            }
+
+                            .quantity
+                            {
+                                height: 27px;
+                                width: 30px;
+                            }
+
+                            .plus
+                            {
+                                background-color: $tertiary-very-dark;
+                                color: $secondary-very-light;
+
+                                padding: 5px;
+                                border-radius: 0px 25px 25px 0px;
+                                text-align: center;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .tax
+        {
+            .price-ht
+            {
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+                color: $tertiary-very-dark;
+                font-size: 30px;
+                font-family: "Poly";
+
+                .label
+                {
+                    font-size: 20px;
+                    padding-top: 10px;
+                }
+
+                .nb
+                {
+                    margin-left: 20px;
+                }
+            }
+
+            .vat
+            {
+                margin-top: 5px;
+
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+                color: $tertiary-very-dark;
+                font-size: 30px;
+                font-family: "Poly";  
+                
+                .label
+                {
+                    padding-top: 10px;
+                    font-size: 20px;
+                }
+
+                .nb
+                {
+                    margin-left: 20px;
+                }
+            }
+
+            .final-price
+            {
+                margin-top: 10px;
+
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+                color: $tertiary-very-dark;
+                font-size: 40px;
+                font-family: "Poly";
+
+                .label
+                {
+                    padding-top: 10px;
+                    font-size: 30px;
+                }
+
+                .nb
+                {
+                    margin-left: 20px;
+                }
+            }
+        }
+
+        .cont-buttons
+        {
+            font-family: "Poly";
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+
+            .clear
+            {
+                cursor: pointer;
+
+                width: 200px;
+                height: 60px;
+                font-size: 25px;
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                border-radius: 25px;
+
+                background-color: $primary-dark;
+                color: $secondary-very-light;
+
+                transition: .5s;
+
+                &:hover
+                {
+                    background-color: $secondary-very-light;
+                    color: $tertiary-very-dark;
+                }
+
+                &:active
+                {
+                    box-shadow: inset 2px 2px 5px $primary-dark;
+                }
+            }
+
+            .validate
+            {
+                cursor: pointer;
+                width: 200px;
+                height: 60px;
+                font-size: 25px;
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                border-radius: 25px;
+
+                background-color: $tertiary-very-dark;
+                color: $secondary-very-light;
+                margin-left: 15px;
+
+                transition: .5s;
+                text-decoration: none;
+
+                &:hover
+                {
+                    background-color: $tertiary-light;
+                    color: $tertiary-very-dark;
+                }
+
+                &:active
+                {
+                    box-shadow: inset 2px 2px 5px $tertiary-very-dark;
+                }
+            }
+        }
+    }
+
+    transition: .5s;
+
+    &.open
+    {
+        transform: translateY(0);
+        overflow-y: scroll;
+    }
+}
+
+@media(max-width: 500px)
+{
+    #viewPanier
+    {
+        .panier
+        {
+            width:100%;
+            grid-template-rows: auto auto auto auto;
+
+            .cont
+            {
+                .list
+                {
+                    .row
+                    {
+                        grid-template-columns: auto;
+                        height: auto;
+
+                        .info
+                        {
+                            .title
+                            {
+                                text-align: center;
+                            }
+
+                            .more
+                            {
+                                grid-template-columns: auto;
+
+                                .quantity
+                                {
+                                    text-align: center;
+                                }
+
+                                .price
+                                {
+                                    text-align: center;
+                                    margin-left: 0;
+                                }
+                            }
+
+                            .action
+                            {
+                                justify-content: center;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .tax
+            {
+                margin-bottom: 15px;
+            }
+
+            .cont-buttons
+            {
+                justify-content: center;
+                flex-direction: column;
+
+                .validate
+                {
+                    margin-left: 0;
+                    margin-top: 15px;
+                }
+            }
+        }
+    }
+}

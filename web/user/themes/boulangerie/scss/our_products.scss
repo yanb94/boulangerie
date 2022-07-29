@@ -1,0 +1,347 @@
+@import "app.scss";
+
+.our_products
+{
+    .front
+    {
+        min-height: calc(100vh - 100px);
+
+        background-color: $primary-dark;
+        position: relative;
+        display: flex;
+        .color
+        {
+            position: absolute;
+            left:0;
+            background-color: rgba($primary-dark, .7);
+            width: 60%;
+            z-index:4;
+            height: 100%;
+        }
+
+        .image
+        {
+            position: absolute;
+            right:0;
+            width: 60%;
+            background-image: url("./../images/our_products.jpg");
+            z-index:3;
+            height: 100%;
+            background-size: cover;
+        }
+
+        .content
+        {
+            position: relative;
+            left: 0;
+            min-height: 100%;
+            width: 60%;
+            z-index: 5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .card
+            {
+                width: 600px;
+                min-height: 300px;
+                background-color: $primary-main;
+                padding: 30px;
+
+                h1
+                {
+                    margin: 0;
+                    font-family: "Redressed";
+                    font-size: 70px;
+                    color: $tertiary-very-dark;
+                    margin-bottom: 10px;
+                }
+
+                p
+                {
+                    margin: 0;
+                    font-family: "Poly";
+                    font-size: 30px;
+                    color: $tertiary-very-dark;
+                }
+
+                .buttons
+                {
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-end;
+                    margin-top: 60px;
+                }
+
+                .button
+                {
+                    width: 200px;
+                    height: 60px;
+                    border-radius: 25px;
+                    font-size: 25px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    text-decoration: none;
+                    font-family: "Poly";
+
+                    background-color: $tertiary-very-dark;
+                    color: $secondary-very-light;
+
+                    transition: .5s;
+
+                    &:hover
+                    {
+                        background-color: $secondary-very-light;
+                        color: $tertiary-very-dark;
+                    }
+                }
+            }
+        }
+    }
+
+    .list
+    {
+        background-color: $tertiary-dark;
+        min-height: 800px;
+        display: grid;
+        padding: 30px;
+        padding-top: 60px;
+        padding-bottom: 60px;
+        grid-template-columns: repeat(4,300px);
+        gap: 30px;
+        justify-content: center;
+
+        .item
+        {
+            width: 300px;
+            height: 350px;
+            background-color: $secondary-very-light;
+            border-radius: 35px;
+            display: grid;
+            grid-template-rows: 200px auto;
+            box-shadow: 2px 2px 5px $tertiary-main;
+
+            .image
+            {
+                border-radius: 35px 35px 0 0;
+                overflow: hidden;
+                .photo
+                {
+                    height: 100%;
+                    width: 100%;
+                    object-fit: cover;
+                }
+            }
+
+            .info
+            {
+                display: grid;
+                grid-template-rows: auto 100px;
+
+                a{
+                    text-decoration: none;
+                }
+
+                h2
+                {
+                    font-family: "Poly";
+                    font-size: 35px;
+                    text-align: center;
+                    color: $tertiary-very-dark;
+                    font-style: normal;
+                    margin: 0;
+                    margin-top: 10px;
+
+                    transition: .5s;
+                    &:hover
+                    {
+                        color: $primary-dark;
+                    }
+                }
+
+                .bottom
+                {
+                    display: grid;
+                    grid-template-columns: 60% 40%;
+                    padding-left: 20px;
+                    padding-right: 20px;
+                    .price
+                    {
+                        font-family: "Poly";
+                        color: $tertiary-very-dark;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-size: 55px;
+                    }
+
+                    .order
+                    {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+
+                        .round
+                        {
+                            height: 70px;
+                            width: 70px;
+                            border-radius: 80px;
+                            border: 4px solid $tertiary-very-dark; 
+                            font-size: 50px;
+
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            color: $tertiary-very-dark;
+
+                            box-shadow: 2px 2px 5px $tertiary-main;
+                            transition: .3s;
+
+                            cursor: pointer;
+
+                            &:hover
+                            {
+                                box-shadow: inset 1px 1px 5px $tertiary-main;
+                            }
+
+                            &:active
+                            {
+                                box-shadow: inset 4px 4px 5px $tertiary-main;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media(max-width: 1315px)
+{
+    .our_products
+    {
+        .list
+        {
+            grid-template-columns: repeat(3, 300px);
+        }
+    }
+}
+
+@media(max-width: 985px)
+{
+    .our_products
+    {
+        .list
+        {
+            grid-template-columns: repeat(2, 300px);
+        }
+    }
+}
+
+@media(max-width: 655px)
+{
+    .our_products
+    {
+        .list
+        {
+            grid-template-columns: repeat(1, 300px);
+        }
+    }
+}
+
+@media(max-width: $breakPointXL)
+{
+    .our_products
+    {
+        .front
+        {
+            .image
+            {
+                background-image: url("./../images/our_productsXL.jpg");
+            }
+
+            .content
+            {
+                width: 70%;
+            }
+        }
+    }
+}
+
+@media(max-width: $breakPointL)
+{
+    .our_products
+    {
+        .front
+        {
+            .color
+            {
+                width: 70%;
+            }
+
+            .image
+            {
+                width: 100%;
+                background-image: url("./../images/our_productsL.jpg");
+            }
+
+            .content
+            {
+                width: 90%;
+            }
+        }
+    }
+}
+
+@media(max-width: $breakPointM)
+{
+    .our_products
+    {
+        .front
+        {
+            .color
+            {
+                width: 100%;
+            }
+    
+            .image
+            {
+                width: 100%;
+                background-image: url("./../images/our_productsM.jpg");
+            }
+    
+            .content
+            {
+                width: 100%;
+            }
+        }
+    }
+}
+
+@media(max-width: $breakPointS)
+{
+    .our_products
+    {
+        .front
+        {
+            min-height: calc(100vh - 50px);
+
+            .image
+            {
+                background-image: url("./../images/our_productsS.jpg");
+            }
+
+            .content
+            {
+                .card
+                {
+                    .buttons
+                    {
+                        justify-content: center;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,82 @@
+{% extends 'partials/base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {% do assets.addCss("/user/plugins/panier/assets/css/invoices_list.css") %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% do assets.addJs("/user/plugins/panier/assets/js/invoices_list.js" , { 'loading':'defer' }) %}
+{% endblock %}
+
+{% block titlebar %}
+    <h1><i class="fa fa-fw fa-shopping-cart"></i> {{page.header.title}}</h1>
+{% endblock %}
+
+{% block content %}
+    <div class="invoice_stats">
+        <div class="today">
+            <div class="label_stat">Aujourd'hui</div>
+            <div class="nb">{{ amountToday|number_format(2)|e }}€</div>
+        </div>
+        <div class="week">
+            <div class="label_stat">Cette semaine</div>
+            <div class="nb">{{ amountWeek|number_format(2)|e }}€</div>
+        </div>
+        <div class="month">
+            <div class="label_stat">Ce mois</div>
+            <div class="nb">{{ amountYear|number_format(2)|e }}€</div>
+        </div>
+        <div class="wait">
+            <div class="label_stat">A délivré</div>
+            <div class="nb">{{ amountWait|number_format(2)|e }}€</div>
+        </div>
+    </div>
+    <div class="invoice_menu_buttons">
+        <span class="label_menu_button">Sélectionnez :</span>
+        
+        <a href="/admin/invoices" class="button {{ type == 'all' ? "selected" : '' }}">Tout</a>
+        <a href="/admin/invoices/payed" class="button {{ type == 'payed' ? "selected" : '' }}">En attente</a>
+        <a href="/admin/invoices/refund" class="button {{ type == 'refund' ? "selected" : '' }}">Remboursé</a>
+        <a href="/admin/invoices/delivred" class="button {{ type == 'delivred' ? "selected" : '' }}">Délivré</a>
+    </div>
+    <div class="invoice_list_menu">
+        <div class="ref">Référence</div>
+        <div class="other-label">
+            <div class="client">Client</div>
+            <div class="amount">Montant</div>
+            <div class="amount">Statut</div>
+            <div class="see_more"></div>
+        </div>
+    </div>
+    <div class="invoice_list_cont">
+        {% for invoice in invoice_list %}
+            <div class="invoice_list_row">
+                <div class="ref"><span class="label_small">Commande&nbsp</span> {{ invoice.factureNumero|e }} <i class="fa fa-chevron-down chevron" aria-hidden="true"></i></div>
+                <div class="other-info-row">
+                    <div class="client"><span class="label_small">Client:&nbsp</span> {{ invoice.firstname|e }} {{ invoice.lastname|upper|e }}</div>
+                    <div class="amount"><span class="label_small">Montant:&nbsp</span>{{ invoice.getPrice_ttc|number_format(2)|e }}€</div>
+                    <div class="amount"><span class="label_small">Statut:&nbsp</span> {{ invoice.statutText|e }}</div>
+                    <div class="see_more">
+                        <a href="/admin/order/{{ invoice.id|e }}">Voir</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="invoice_pagination_cont">
+        {% if pageNb - 1 > 0 %}
+            {% if prevPage > 1 %}
+                <a href="/admin/invoices{{ type == 'all' ? "" : '/' ~ type }}/{{prevPage}}" class="invoice_prev"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+            {% else %}
+                <a href="/admin/invoices{{ type == 'all' ? "" : '/' ~ type }}" class="invoice_prev"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+            {% endif %}
+        {% endif %}
+
+        {% if pageNb < maxPage and maxPage > 1 %}
+            <a href="/admin/invoices{{ type == 'all' ? "" : '/' ~ type }}/{{nextPage}}" class="invoice_next"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+        {% endif %}
+        
+    </div>
+{% endblock %}

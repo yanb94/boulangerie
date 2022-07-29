@@ -1,0 +1,63 @@
+{% extends "partials/base.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {% do assets.addCss('theme://css-compiled/product.css', 97) %}
+{% endblock %}
+
+{% block body %}
+    <section id="body">
+        <div class="product">
+            <div class="card">
+                <div class="return">
+                    <a href="{{page.header.page_product|e}}" title="Retourner a la produit">
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                </div>
+                <div class="image">
+                    <img src="{{ resizeProduct((page.header.photo|first).path,300,300,'product_page')|e }}" alt="Croissant" class="photo">
+                </div>
+                <div class="info">
+                    <div class="top">
+                        <h1>{{ page.header.title|e }}</h1>
+                        <p>{{ page.header.description|e }}</p>
+                    </div>
+                    <div class="bottom">
+                        <div class="price">
+                            {{ page.header.price|e }}€
+                        </div>
+                        <div class="order">
+                            <div class="text">
+                                Ajouter au panier
+                            </div>
+                            <div class="round" data-product="{{ page.header.ref|e }}" data-product-action="add">
+                                <i class="fas fa-shopping-basket"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org/",
+            "@type": "Product",
+            "name": "{{ page.header.title|e }}",
+            "image": [
+                "{{ (page.header.photo|first).path|e }}"
+            ],
+            "description": "{{ page.header.description|e }}",
+            "brand": {
+                "@type": "Brand",
+                "name": "Le Bon Pain"
+            },
+            "offers": {
+                "@type": "Offer",
+                "url": "{{ page.url }}",
+                "priceCurrency": "EUR",
+                "price": "{{ page.header.price|e|number_format(2) }}"
+                }
+        }
+    </script>
+{% endblock %}

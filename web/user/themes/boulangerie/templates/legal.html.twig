@@ -1,0 +1,21 @@
+{% extends 'partials/base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {% do assets.addCss('theme://css-compiled/legal.css', 97) %}
+{% endblock %}
+
+{% block body %}
+    <section id="body">
+        <div class="legal">
+            <div class="legal-card">
+                <h1>
+                    {{page.header.title|e}}
+                </h1>
+                {% block content %}
+                    {{ page.content|raw }}
+                {% endblock %}
+            </div>
+        </div>
+    </section>
+{% endblock %}

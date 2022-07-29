@@ -1,0 +1,7 @@
+{% macro home_url(page, alias = "/home") %}
+    {% if page == alias %}
+        /
+    {% else %}
+        {{ page }}
+    {% endif %}
+{% endmacro %}

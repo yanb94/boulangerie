@@ -1,0 +1,56 @@
+.success-front
+{
+    min-height: calc(100vh - 220px);
+    background-color: #D38A2C;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 0;
+}
+
+.success-front .card
+{
+    background-color: #E8A752;
+    min-height: 350px;
+    width: 400px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 30px
+}
+
+.success-front .card h1
+{
+    margin: 0;
+    font-family: "Redressed";
+    font-size: 60px;
+    text-align: center;
+    color: #A63C14;
+}
+
+.success-front .card .msg
+{
+    color: #A63C14;
+    font-size: 25px;
+    font-family: "Poly";
+    text-align: justify;
+}
+
+.success-front .card .button
+{
+    background-color: #A63C14;
+    color: #FFE9A8;
+    text-decoration: none;
+    padding: 10px;
+    font-family: "Poly";
+    font-size: 25px;
+    border-radius: 10px;
+    transition: 0.5s;
+}
+
+.success-front .card .button:hover
+{
+    background-color: #FFE9A8;
+    color: #A63C14;
+}

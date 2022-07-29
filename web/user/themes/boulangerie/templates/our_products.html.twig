@@ -1,0 +1,84 @@
+{% extends "partials/base.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {% do assets.addCss('theme://css-compiled/our_products.css', 97) %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% do assets.addJs('theme://js/our_products.js',{'group':"bottom"}) %}
+{% endblock %}
+
+{% block body %}
+    <section id="body">
+        <div class="our_products">
+            <div class="front">
+                <div class="image"></div>
+                <div class="color"></div>
+                <div class="content">
+                    <div class="card">
+                        <h1>{{ page.header.title|e }}</h1>
+                        <p>{{ page.header.description|e }}</p>
+                        <div class="buttons">
+                            <a id="btn_see_more" class="button">{{ page.header.button_text|e}}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="our_product" class="list">
+                {% for p in page.collection %}
+                <div class="item">
+                    <div class="image">
+                        <img  class="photo" src="{{ resizeProduct((p.header.photo|first).path,300,200,"list")|e }}" alt="{{ page.header.title|e }}" width="100%" height="100%">
+                    </div>
+                    <div class="info">
+                        <a href="{{ p.url|e }}"><h2>{{ p.title|e }}</h2></a>
+                        <div class="bottom">
+                            <div class="price">
+                                {{ p.header.price|e }}€
+                            </div>
+                            <div class="order">
+                                <div class="round add-product" data-product={{ p.header.ref|e }} data-product-action="add">
+                                    <i class="fas fa-shopping-basket"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "{{ page.header.title|e }}",
+        "description": "{{ page.header.metadata.description|e }}",
+        "url": "{{ base_url }}/nos-produits",
+        "mainEntity": {
+            "@type":"Menu",
+            "hasMenuItem": [
+                {% for p in page.collection %}
+                {
+                    "@type":"MenuItem",
+                    "name": "{{ p.header.title|e }}",
+                    "description": "{{ p.header.metadata.description|e }}",
+                    "image": "{{ '{{ base_url }}/'~(p.header.photo|first).path|e }}",
+                    "offers":{
+                        "@type": "Offer",
+                        "price": "{{ p.header.price|e|number_format(2) }}",
+                        "priceCurrency": "EUR"
+                    }
+                }
+                    {% if loop.last == false %}
+                    ,
+                    {% endif %}
+                {% endfor %}
+            ]
+        }
+    }
+    </script>
+{% endblock %}

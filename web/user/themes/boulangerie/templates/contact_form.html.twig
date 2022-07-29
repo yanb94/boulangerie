@@ -1,0 +1,32 @@
+{% extends 'partials/base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {% do assets.addCss('theme://css-compiled/contact.css', 97) %}
+{% endblock %}
+
+{% block body %}
+    <section id="body">
+        <div class="contact">
+            <div class="image"></div>
+            <div class="color"></div>
+            <div class="content">
+                <div class="card">
+                    <h1>{{ page.header.form_title|e }}</h1>
+                    {% include "forms/form.html.twig" with { form: forms('contact') } %}
+                    <div class="info">* champs obligatoire</div>
+                </div>
+            </div>
+        </div>
+        
+    </section>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ContactPage",
+        "name": "{{ page.header.title|e }}",
+        "description": "{{ page.header.metadata.description|e }}",
+        "url": "{{ base_url }}/contact"
+    }
+    </script>
+{% endblock %}

@@ -1,0 +1,85 @@
+{% extends 'partials/base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {% do assets.addCss('/user/plugins/panier/assets/css/cart_pay.css', 97) %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% do assets.addJs('https://polyfill.io/v3/polyfill.min.js?version=3.52.1&features=fetch',{'group': "bottom"}) %}
+    {% do assets.addJs('https://js.stripe.com/v3/',{'group': "bottom"}) %}
+    {% do assets.addJs('plugin://panier/assets/js/env.js',{'group':"bottom"}) %}
+    {% do assets.addJs('plugin://panier/assets/js/pay.js',{'group':"bottom"}) %}
+{% endblock %}
+
+{% block body %}
+    <section id="body">
+        <div class="cart_validate">
+            <div class="cart_validate_cont">
+                <h1>
+                    {{ page.header.title|e }}
+                </h1>
+                <div class="cont">
+                    {{ dump(order) }}
+                    {% if order.rows is empty %}
+                        <div class="empty">
+                            <a href="/nos-produits" class="return-button">Voir nos produits</a>
+                        </div>
+                    {% else %}
+                        <div class="list">
+                            {% for row in order.rows %}
+                                <div class="row" data-product="{{ row.ref|e }}">
+                                    <div class="image">
+                                        <img src="{{ resizeProduct(row.photo,100,100,"validate_cart")|e }}" alt={{ row.name|e }}>
+                                    </div>
+                                    <div class="info">
+                                        <div class="title">{{ row.name|e }}</div>
+                                        <div class="more">
+                                            <div class="quantity">Quantité : {{ row.quantity|e }}</div>
+                                            <div class="price"><span class="label">Prix</span> {{ row.price|e|number_format(2) }}€</div>
+                                            <div class="price_total"><span class="label">Total</span>{{ (row.price * row.quantity)|e|number_format(2) }}€</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                            <div class="tax">
+                                <div class="price-ht">
+                                    <div class="label">Prix HT</div> <div class="nb">{{ order is empty or order.price_ht < 0 ? 0.00 : order.price_ht|number_format(2) }}€</div> 
+                                </div>
+                                <div class="vat">
+                                    <div class="label">TVA ({{ order.tva|e }}%)</div> <div class="nb">{{ order is empty or order.vat < 0 ? 0.00 : order.vat|number_format(2) }}€</div> 
+                                </div>
+                                <div class="final-price">
+                                    <div class="label">Prix TTC</div> <div class="nb">{{ order is empty or order.price_ttc < 0 ? 0.00 : order.price_ttc|number_format(2) }}€</div> 
+                                </div>
+                            </div>
+                            <div id="payment-form-cont">
+                                <form id="payment-form">
+                                    <input id="cookieId" type="hidden" name="cookieId" value="{{ order.cookie }}">
+                                    <div id="firstnameError" class="error-form">Erreur</div>
+                                    <input type="text" required id="firstname" placeholder="Entrez votre Prénom" />
+                                    <div id="lastnameError" class="error-form">Erreur</div>
+                                    <input type="text" required id="lastname" placeholder="Entrez votre Nom de famille" />
+                                    <hr>
+                                    <div id="emailError" class="error-form">Erreur</div>
+                                    <input type="email" required id="email" placeholder="Entrez votre adresse email" />
+                                    <div id="card-element"><!--Stripe.js injects the Card Element--></div>
+                                    <button id="submit" disabled>
+                                        <div class="spinner hidden" id="spinner"></div>
+                                        <span id="button-text">Régler votre commande</span>
+                                    </button>
+                                    <p id="card-error" role="alert"></p>
+                                    <p class="result-message hidden">
+                                        Payment succeeded, see the result in your
+                                        <a href="" target="_blank">Stripe dashboard.</a> Refresh the page to pay again.
+                                    </p>
+                                </form>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

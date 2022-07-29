@@ -1,0 +1,90 @@
+{% extends 'partials/base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {% do assets.addCss('theme://css-compiled/about.css', 97) %}
+{% endblock %}
+
+{% block body %}
+    <section id="body">
+        <div class="about">
+            <div class="image"></div>
+            <div class="color"></div>
+            <div class="content">
+                <div class="info">
+                    <div class="card">
+                        <h1>{{ page.header.title_card|e }}</h1>
+                        <p>{{ page.header.content_card|e }}</p>
+                    </div>
+                </div>
+                <div class="team">
+                    <div class="card">
+                        <h2>Notre Équipe</h2>
+                        <div class="list">
+                            {% for p in page.header.team %}
+                                
+                                <div class="person person--{{ loop.index }}">
+                                    <img src="{{ (p.photo|first).path }}" alt="{{ p.name }}" width="100%" height="100%">
+                                    <p class="name">
+                                        {{ p.name }}
+                                    </p>
+                                    <p class="job">
+                                        {{ p.job }}
+                                    </p>
+                                </div>  
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "AboutPage",
+        "name": "{{ page.header.title|e }}",
+        "description": "{{ page.header.metadata.description|e }}",
+        "url": "{{ base_url }}/about",
+        "mainEntity":{
+            "@type": "Bakery",
+            "@id": "{{ base_url }}",
+            "url": "{{ base_url }}",
+            "name": "Le Bon Pain",
+            "description": "Une boulangerie de qualité pour un public exigeant",
+            "image": [
+                "{{ base_url }}/user/themes/boulangerie/images/front-home.jpg",
+                "{{ base_url }}/user/themes/boulangerie/images/front-team-home.jpg",
+                "{{ base_url }}/user/themes/boulangerie/images/front-product.jpg"
+            ],
+            "telephone": "{{ site.info.phone|e }}",
+            "servesCuisine": "French pastry",
+            "priceRange": "€€€",
+            "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Paris",
+                "addressCountry": "FR",
+                "addressRegion": "Ile de France",
+                "postalCode": "75000",
+                "streetAddress": "{{ site.info.address|e }}"
+            },
+            "menu": "{{ base_url }}/nos-produits",
+            "openingHoursSpecification": [
+                {
+                    "@type": "OpeningHoursSpecification",
+                    "dayOfWeek": [
+                    "Monday",
+                    "Tuesday",
+                    "Wednesday",
+                    "Thursday",
+                    "Friday"
+                    ],
+                    "opens": "09:00",
+                    "closes": "21:00"
+                }
+            ]
+            
+        }
+    }
+    </script>
+{% endblock %}

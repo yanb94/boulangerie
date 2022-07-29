@@ -1,0 +1,13 @@
+{% import "home_parts/home_url.html.twig" as constant %}
+<div class="home-product-front">
+    <div class="image"></div>
+    <div class="content">
+        <div class="card">
+            <h1>{{ page.header.front_product.title|e }}</h1>
+            <p>{{ page.header.front_product.description|e }}</p>
+            <div class="button-cont">
+                <a class="btn button-first" href="{{ constant.home_url(page.header.front_product.first_button.link)|e }}">{{page.header.front_product.first_button.label|e}}</a>
+            </div>
+        </div>
+    </div>
+</div>

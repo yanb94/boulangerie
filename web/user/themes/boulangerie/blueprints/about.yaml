@@ -1,0 +1,90 @@
+title: A propos
+'@extends':
+    type: default
+    context: blueprints://pages
+form:
+  validation: strict
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+      fields:
+        content:
+          type: tab
+          title: Contenu
+
+          fields:
+            content:
+              unset@: true
+            header.media_order:
+              unset@: true
+            header.title: 
+              type: text
+              label: Titre de la page
+              style: vertical
+              validate:
+                required: true
+            header.title_card:
+              type: text
+              label: Titre de la carte
+              style: vertical
+              validate:
+                required: true
+            header.onpage_menu:
+              type: toggle
+              label: Page dans le menu
+              style: vertical
+              highlight: 1
+              options:
+                true: Oui
+                false: Non
+              validate:
+                type: bool
+                required: true
+            header.content_card:
+              type: textarea
+              label: Contenu de la carte
+              style: vertical
+              minlength: 10
+              maxlength: 255
+              rows: 10
+              validate:
+                required: true
+            header.team:
+              type: list
+              name: team
+              label: Équipe
+              style: vertical
+              required: true
+              fields:
+                .name:
+                  type: text
+                  label: Nom
+                  required: true
+                .job:
+                  type: text
+                  label: Métier
+                  required: true
+                .photo:
+                  type: file
+                  label: Portrait
+                  multiple: false
+                  destination: 'user/data/photo'
+                  random_name: true
+                  avoid_overwriting: true
+                  accept:
+                    - image/*
+                  required: true
+        options:
+          type: tab
+          fields:
+            publishing:
+              fields:
+                header.published:
+                  unset@: true
+                header.date:
+                  unset@: true
+                header.publish_date:
+                  unset@: true
+                header.unpublish_date:
+                  unset@: true

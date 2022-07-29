@@ -1,0 +1,244 @@
+@import "app.scss";
+
+.access
+{
+    min-height: calc(100vh - 100px);
+    background-color: $primary-dark;
+    position: relative;
+    display: flex;
+
+    .image
+    {
+        position: absolute;
+        left:0;
+        height: 100%;
+        width: 60%;
+        z-index:3;
+        background-image: url('./../images/access.jpg');
+        background-size: cover;
+    }
+
+    .color
+    {
+        position: absolute;
+        right: 0;
+        height: 100%;
+        width: 60%;
+        z-index:4;
+        background-color: rgba($primary-dark, $alpha: .7);
+    }
+
+    .content
+    {
+        position: relative;
+        left: 0;
+        min-height: 100%;
+        width: 100%;
+        z-index: 5;
+
+        display: grid;
+        grid-template-columns: 50% 50%;
+
+        .map
+        {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            #map
+            {
+                width: 550px;
+                height: 500px;
+            }
+        }
+
+        .info
+        {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .card
+            {
+                background-color: $primary-main;
+                width: 500px;
+                min-height: 600px;
+                padding: 30px;
+
+                h1
+                {
+                    color: $tertiary-very-dark;
+                    font-family: "Redressed";
+                    font-size: 70px;
+                    margin: 0;
+                    font-weight: normal;
+                }
+
+                .adress
+                {
+                    color: $tertiary-very-dark;
+                    font-family: "Poly";
+                    font-size: 25px;
+                    margin-top: 15px;
+                    margin-bottom: 0;
+                }
+
+                .transport, .itineraire
+                {
+                    color: $tertiary-very-dark;
+                    font-family: "Poly";
+                    margin-top: 45px;
+
+                    h2
+                    {
+                        font-size: 30px;
+                        font-weight: normal;
+                        margin-bottom: 20px;
+                        margin-top: 0;
+                    }
+
+                    .item
+                    {
+                        font-size: 25px;
+                        margin-bottom: 15px;
+                    }
+
+                    a
+                    {
+                        text-decoration: none;
+                        color: $tertiary-very-dark;
+                        transition: .5s;
+
+                        &:hover
+                        {
+                            color: $secondary-very-light;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: $breakPointXL)
+{
+    .access
+    {
+        .image
+        {
+            width: 70%;
+            background-image: url('./../images/accessXL.jpg');
+        }
+
+        .color
+        {
+            width: 70%;
+        }
+
+        .content
+        {
+            grid-template-columns: 100%;
+
+            .map
+            {
+                justify-content: flex-end;
+                margin-right: 10%;
+                margin-bottom: 60px;
+            }
+
+            .info
+            {
+                margin-top: 60px;
+                justify-content: flex-start;
+                margin-left: 10%;
+                margin-bottom: 60px;
+            }
+        }
+    }
+}
+
+@media(max-width: $breakPointL)
+{
+    .access
+    {
+        .image
+        {
+            width: 80%;
+            background-image: url('./../images/accessL.jpg');
+        }
+
+        .color
+        {
+            width: 80%;
+        }
+    }
+}
+
+@media(max-width: $breakPointM)
+{
+    .access
+    {
+        .image
+        {
+            width: 100%;
+            background-image: url('./../images/accessM.jpg');
+        }
+
+        .color
+        {
+            width: 100%;
+        }
+
+        .content
+        {
+            grid-template-columns: 100%;
+
+            .map
+            {
+                justify-content: center;
+                margin-bottom: 60px;
+                margin-right: 0;
+            }
+
+            .info
+            {
+                margin-top: 60px;
+                justify-content: center;
+                margin-bottom: 60px;
+                margin-left: 0;
+            }
+        }
+    }
+}
+
+@media (max-width: $breakPointS)
+{
+    .access
+    {
+        min-height: calc(100vh - 50px);
+
+        .image
+        {
+            background-image: url('./../images/accessS.jpg');
+        }
+
+        .content
+        {
+            .info
+            {
+                .card
+                {
+                    width: 100%;
+                }
+            }
+
+            .map
+            {
+                #map
+                {
+                    width: 90%;
+                }
+            }
+        }
+    }
+}

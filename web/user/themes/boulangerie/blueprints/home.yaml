@@ -1,0 +1,156 @@
+title: Accueil
+'@extends':
+    type: default
+    context: blueprints://pages
+form:
+  validation: strict
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+      fields:
+        content:
+          type: tab
+          title: Contenu
+          fields:
+            content:
+              unset@: true
+            header.media_order:
+              unset@: true
+
+            header.title: 
+              type: text
+              label: Titre de la page
+              style: vertical
+              validate:
+                required: true
+            header.onpage_menu:
+              type: toggle
+              label: Page dans le menu
+              style: vertical
+              highlight: 1
+              options:
+                true: Oui
+                false: Non
+              validate:
+                type: bool
+            header.front:
+              type: fieldset
+              collapsible: true
+              title: Première partie
+              fields:
+                header.front.title: 
+                  type: text
+                  label: Titre de la première partie
+                  style: vertical
+                  validate:
+                    required: true
+                header.front.description: 
+                  type: textarea
+                  label: Description de la première partie
+                  style: vertical
+                  validate:
+                    required: true
+                # First Button
+                header.front.first_button.label:
+                  type: text
+                  label: Label du premier bouton
+                  style: horizontal
+                  validate:
+                    required: true
+                header.front.first_button.link:
+                  type: pages
+                  label: Lien du premier bouton
+                  style: horizontal
+                  validate:
+                    required: true
+                # Second Button
+                header.front.second_button.label:
+                  type: text
+                  label: Label du second bouton
+                  style: horizontal
+                  validate:
+                    required: true
+                header.front.second_button.link:
+                  type: pages
+                  label: Lien du second bouton
+                  style: horizontal
+                  validate:
+                    required: true
+            header.front_team:
+              type: fieldset
+              collapsible: true
+              collapsed: true
+              title: Seconde partie
+              fields:
+                header.front_team.title: 
+                  type: text
+                  label: Titre de la seconde partie
+                  style: vertical
+                  validate:
+                    required: true
+                header.front_team.description: 
+                  type: textarea
+                  label: Description de la seconde partie
+                  style: vertical
+                  validate:
+                    required: true
+                # First Button
+                header.front_team.first_button.label:
+                  type: text
+                  label: Label du premier bouton
+                  style: horizontal
+                  validate:
+                    required: true
+                header.front_team.first_button.link:
+                  type: pages
+                  label: Lien du premier bouton
+                  style: horizontal
+                  validate:
+                    required: true
+            header.front_product:
+              type: fieldset
+              collapsible: true
+              collapsed: true
+              title: Troisième partie
+              fields:
+                header.front_product.title: 
+                  type: text
+                  label: Titre de la troisième partie
+                  style: vertical
+                  validate:
+                    required: true
+                header.front_product.description: 
+                  type: textarea
+                  label: Description de la troisième partie
+                  style: vertical
+                  validate:
+                    required: true
+                # First Button
+                header.front_product.first_button.label:
+                  type: text
+                  label: Label du premier bouton
+                  style: horizontal
+                  validate:
+                    required: true
+                header.front_product.first_button.link:
+                  type: pages
+                  label: Lien du premier bouton
+                  style: horizontal
+                  validate:
+                    required: true
+        options:
+          type: tab
+          fields:
+            publishing:
+              fields:
+                header.published:
+                  unset@: true
+                header.date:
+                  unset@: true
+                header.publish_date:
+                  unset@: true
+                header.unpublish_date:
+                  unset@: true
+            
+

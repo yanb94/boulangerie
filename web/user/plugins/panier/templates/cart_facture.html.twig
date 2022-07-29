@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/user/plugins/panier/assets/css/cart_facture.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poly:ital@0;1&family=Redressed&display=swap" rel="stylesheet">
+    <title>Facture</title>
+</head>
+<body>
+    {% set months = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"] %}
+    <div class="header no-break">
+        <div class="ref">
+            Facture {{ facture.factureNumero|e }}
+            <div class="date"> Le {{ facture.created_at|date("d","Europe/Paris") }} {{ months[facture.created_at|date("n") - 1]|e }} {{ facture.created_at|date("Y à H:i","Europe/Paris") }} </div>
+        </div>
+        <div class="logo">
+            <div class="round"> 
+            {{title|e}} 
+            </div>
+        </div>
+    </div>
+    <div class="info no-break">
+        <div class="firm">
+            <p><b>Éméteur</b></p>
+            <p>{{title|e}}</p>
+            <p>Adresse: {{site.address|e}}</p>
+            <p>Tel: {{site.phone|e}}</p>
+            <p>Email: {{site.email|e}}</p>
+        </div>
+        <div class="client">
+            <p><b>Destinataire</b></p>
+            <p>{{ facture.firstname|e }} {{ facture.lastname|upper|e }}</p>
+            <p>Email: {{ facture.email|e }}</p>
+        </div>
+    </div>
+    <div class="content">
+        <div class="label no-break">
+            <div class="name">Nom</div>
+            <div class="price">Prix</div>
+            <div class="quantity">Quantité</div>
+            <div class="amount">Montant</div>
+        </div>
+        {% for row in facture.rows %}
+            <div class="row">
+                <div class="name">{{ row.name|e }}</div>
+                <div class="price">€{{ row.price|number_format(2)|e }}</div>
+                <div class="quantity">{{ row.quantity|e }}</div>
+                <div class="amount">€{{ (row.price * row.quantity)|number_format(2)|e }}</div>
+            </div>
+        {% endfor %}
+
+        <div class="final no-break">
+            <div class="ht">
+                <div class="label_final">Total HT</div>
+                <div class="price">€{{ facture.getPrice_ht|number_format(2)|e }}</div>
+            </div>
+            <div class="tva">
+                <div class="label_final">TVA {{ facture.getTva|number_format(2)|e }}%</div>
+                <div class="price">€{{ facture.getVat|number_format(2)|e }}</div>
+            </div>
+            <div class="ttc">
+                <div class="label_final">Total TTC</div>
+                <div class="price">€{{ facture.getPrice_ttc|number_format(2)|e }}</div>
+            </div>
+        </div>
+    </div>
+    <div class="mention">
+        Toute mention légale utile supplémentaire
+    </div>
+</body>
+</html>

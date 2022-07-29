@@ -1,0 +1,254 @@
+@import "app.scss";
+
+.product
+{
+    min-height: calc(100vh - 160px);
+    background-color: $tertiary-dark;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+
+    .card
+    {
+        display: grid;
+        background-color: $secondary-very-light;
+        min-height: 500px;
+        width: 1000px;
+        border-radius: 10px;
+        grid-template-columns: 40% 60%;
+        box-shadow: 5px 5px 5px $tertiary-very-dark;
+        position: relative;
+
+        .return
+        {
+            position: absolute;
+            left: 20px;
+            top: 10px;
+            font-size: 50px;
+            color: $tertiary-very-dark;
+
+            a
+            {
+                color: inherit;
+            }
+        }
+
+        .image
+        {
+            padding: 30px;
+            text-align: center;
+            .photo
+            {
+                height: 300px;
+                width: 300px;
+                border-radius: 300px;
+                object-fit: cover;
+                box-shadow: 2px 2px 1px $secondary-main;
+            }
+        }
+
+        .info
+        {
+            padding: 30px;
+            position: relative;
+
+            display: grid;
+            grid-template-rows: auto 200px;
+
+
+            h1
+            {
+                text-align: center;
+                font-family: "Redressed";
+                font-size: 70px;
+                margin: 0;
+                color: $tertiary-very-dark;
+            }
+            p
+            {
+                font-family: "Poly";
+                font-size: 30px;
+                color: $tertiary-very-dark;
+                margin: 0;
+                margin-top: 15px;
+                text-align: justify;
+            }
+
+            .bottom
+            {
+                // position: relative;
+                width: calc(100% + 30px);
+                height: 200px;
+                bottom: -30px;
+
+                display: grid;
+                grid-template-columns: 50% 50%;
+                
+                .price
+                {
+                    color: $tertiary-very-dark;
+                    font-size: 80px;
+                    font-family: "Poly";
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                .order
+                {
+                    color: $tertiary-very-dark;
+                    font-size: 80px;
+                    font-family: "Poly";
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-direction: column;
+
+                    .round
+                    {
+                        border-radius: 100%;
+                        border: 5px solid $tertiary-very-dark;
+                        padding: 5px;
+                        text-align: center;
+
+                        box-shadow: 2px 2px 5px $tertiary-main;
+                        transition: .3s;
+
+                        width: 100px;
+                        height: 100px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+
+                        cursor: pointer;
+
+                        &:hover
+                        {
+                            box-shadow: inset 1px 1px 5px $tertiary-main;
+                        }
+
+                        &:active
+                        {
+                            box-shadow: inset 4px 4px 5px $tertiary-main;
+                        }
+                    }
+
+                    .text
+                    {
+                        font-size: 20px;
+                        margin-bottom: 10px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media(max-width: 1030px)
+{
+    .product
+    {
+        .card
+        {
+            width: 850px;
+        }
+    }
+}
+
+@media(max-width: 880px)
+{
+    .product
+    {
+        .card
+        {
+            width: 600px;
+            grid-template-columns: 100%;
+
+            .image
+            {
+                padding-bottom: 0;
+            }
+        }
+    }
+}
+
+@media(max-width: 670px)
+{
+    .product
+    {
+        .card
+        {
+            width: 600px;
+            grid-template-columns: 100%;
+
+            .image
+            {
+                padding-bottom: 0;
+            }
+
+            .info
+            {
+
+                grid-template-rows: auto;
+                .bottom
+                {
+                    height: inherit;
+                    min-height: 200px;
+                    grid-template-columns: 100%;
+                    width: 100%;
+
+                    .order
+                    {
+                        margin-top: 30px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media(max-width: 500px)
+{
+    .product
+    {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+@media(max-width: 350px)
+{
+    .product
+    {
+        .card
+        {
+            .image
+            {
+                .photo
+                {
+                    width: 250px;
+                    height: 250px;
+                }
+            }
+        }
+    }
+}
+
+@media(max-width: 300px)
+{
+    .product
+    {
+        .card
+        {
+            .image
+            {
+                .photo
+                {
+                    width: 200px;
+                    height: 200px;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,60 @@
+{% if show_panier %}
+    <div id="viewPanier">
+        <div class="panier">
+            <div id="close-panier" class="close">
+                <i class="fas fa-times"></i>
+            </div>
+            <div class="head">Mon Panier</div>
+            <div class="cont">
+                {{ dump(panier) }}
+                {% if panier is empty or panier.list is empty %}
+                    <div class="empty">Votre panier est actuellement vide</div>
+                {% else %}
+                    <div class="list">
+                        {% for row in panier.list %}
+                            <div class="row" data-product="{{ row.ref|e }}">
+                                <div class="close" data-product="{{ row.ref|e }}" data-product-action="clearProduct">
+                                    <i class="fas fa-times"></i>
+                                </div>
+                                <div class="image">
+                                    <img src="{{ row.photo|e }}" alt="Macaron">
+                                </div>
+                                <div class="info">
+                                    <div class="title">{{ row.name|e }}</div>
+                                    <div class="more">
+                                        <div class="quantity">Quantité : <span data-product="{{ row.ref|e }}" class="quantity_aff">{{ row.quantity|e }}</span> </div>
+                                        <div class="price">{{row.price|e|number_format(2)}}€</div>
+                                    </div>
+                                    <div class="action">
+                                        <div class="less" data-product="{{ row.ref|e }}" data-product-action="decrease">
+                                            <i class="fas fa-minus"></i>
+                                        </div>
+                                        <input data-product="{{ row.ref|e }}" class="quantity" type="number" value="{{ row.quantity|e }}">
+                                        <div class="plus" data-product="{{ row.ref|e }}" data-product-action="add">
+                                            <i class="fas fa-plus"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+            <div class="tax">
+                <div class="price-ht">
+                    <div class="label">Prix HT</div> <div class="nb">{{ panier is empty or panier.price_ht < 0 ? 0.00 : panier.price_ht|number_format(2) }}€</div> 
+                </div>
+                <div class="vat">
+                    <div class="label">TVA (20.6%)</div> <div class="nb">{{ panier is empty or panier.vat < 0 ? 0.00 : panier.vat|number_format(2) }}€</div> 
+                </div>
+                <div class="final-price">
+                    <div class="label">Prix TTC</div> <div class="nb">{{ panier is empty or panier.price_ttc < 0 ? 0.00 : panier.price_ttc|number_format(2) }}€</div> 
+                </div>
+            </div>
+            <div class="cont-buttons">
+                <div class="clear">Vider</div>
+                <a href="/panier/validate" class="validate">Valider</a>
+            </div>
+        </div>
+    </div>
+{% endif %}

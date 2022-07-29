@@ -1,0 +1,61 @@
+title: Accès
+'@extends':
+    type: default
+    context: blueprints://pages
+form:
+  validation: strict
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+      fields:
+        content:
+          type: tab
+          title: Contenu
+          fields:
+            content:
+              unset@: true
+            header.media_order:
+              unset@: true
+            header.title: 
+              type: text
+              label: Nom du produit
+              style: vertical
+              validate:
+                required: true
+            header.price: 
+              type: integer
+              label: Prix en euro
+              style: vertical
+              validate:
+                required: true
+            header.ref: 
+              type: text
+              label: Référence
+              style: vertical
+              validate:
+                required: true
+            header.description: 
+              type: textarea
+              label: Description du produit
+              style: vertical
+              validate:
+                required: true
+                max: 200
+            header.photo:
+              type: file
+              label: Photo du produit
+              multiple: false
+              destination: self@
+              random_name: true
+              avoid_overwriting: true
+              accept:
+                - image/*
+              required: true
+            header.page_product:
+                  type: pages
+                  label: Lien de la liste des produits
+                  style: horizontal
+                  validate:
+                    required: true
+            

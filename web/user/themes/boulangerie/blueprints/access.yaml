@@ -1,0 +1,85 @@
+title: Accès
+'@extends':
+    type: default
+    context: blueprints://pages
+form:
+  validation: strict
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+      fields:
+        content:
+          type: tab
+          title: Contenu
+          fields:
+            content:
+              unset@: true
+            header.media_order:
+              unset@: true
+            header.title: 
+              type: text
+              label: Titre de la page
+              style: vertical
+              validate:
+                required: true
+            header.title_card: 
+              type: text
+              label: Titre de la page
+              style: vertical
+              validate:
+                required: true
+            header.onpage_menu:
+              type: toggle
+              label: Page dans le menu
+              style: vertical
+              highlight: 1
+              options:
+                true: Oui
+                false: Non
+              validate:
+                type: bool
+                required: true
+            header.transport:
+              type: list
+              name: transport
+              label: Transport
+              style: vertical
+              required: true
+              fields:
+                .name:
+                  type: text
+                  label: Nom du transport
+                  required: true
+                .localisation:
+                  type: text
+                  label: Station
+                  required: true
+            header.itineraire_link:
+              type: list
+              name: itineraire_link
+              label: Lien pour trouver un itinéraire
+              style: vertical
+              required: true
+              fields:
+                .name:
+                  type: text
+                  label: Nom du site
+                  required: true
+                .link:
+                  type: text
+                  label: Lien du site
+                  required: true
+        options:
+          type: tab
+          fields:
+            publishing:
+              fields:
+                header.published:
+                  unset@: true
+                header.date:
+                  unset@: true
+                header.publish_date:
+                  unset@: true
+                header.unpublish_date:
+                  unset@: true

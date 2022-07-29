@@ -1,0 +1,60 @@
+{% extends 'partials/base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {% do assets.addCss('theme://css-compiled/home.css', 97) %}
+{% endblock %}
+
+{% block content %}
+    {% include "home_parts/front.html.twig" %}
+    {% include "home_parts/team_front.html.twig" %}
+    {% include "home_parts/product_front.html.twig" %}
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "{{ page.header.title|e }}",
+        "description": "{{ page.header.metadata.description|e }}",
+        "url": "{{ base_url }}",
+        "mainEntity":{
+            "@type": "Bakery",
+            "@id": "{{ base_url }}",
+            "url": "{{ base_url }}",
+            "name": "Le Bon Pain",
+            "description": "Une boulangerie de qualité pour un public exigeant",
+            "image": [
+                "{{ base_url }}/user/themes/boulangerie/images/front-home.jpg",
+                "{{ base_url }}/user/themes/boulangerie/images/front-team-home.jpg",
+                "{{ base_url }}/user/themes/boulangerie/images/front-product.jpg"
+            ],
+            "telephone": "{{ site.info.phone|e }}",
+            "servesCuisine": "French pastry",
+            "priceRange": "€€€",
+            "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Paris",
+                "addressCountry": "FR",
+                "addressRegion": "Ile de France",
+                "postalCode": "75000",
+                "streetAddress": "{{ site.info.address|e }}"
+            },
+            "menu": "{{ base_url }}/nos-produits",
+            "openingHoursSpecification": [
+                {
+                    "@type": "OpeningHoursSpecification",
+                    "dayOfWeek": [
+                    "Monday",
+                    "Tuesday",
+                    "Wednesday",
+                    "Thursday",
+                    "Friday"
+                    ],
+                    "opens": "09:00",
+                    "closes": "21:00"
+                }
+            ]
+            
+        }
+    }
+    </script>
+{% endblock %}

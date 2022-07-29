@@ -1,0 +1,46 @@
+title: Contact
+'@extends':
+    type: default
+    context: blueprints://pages
+form:
+  validation: strict
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+      fields:
+        content:
+          type: tab
+          title: Contenu
+
+          fields:
+            content:
+              unset@: true
+            header.media_order:
+              unset@: true
+            header.title: 
+              type: text
+              label: Titre de la page
+              style: vertical
+              validate:
+                required: true
+            header.form_title:
+              type: text
+              label: Titre du formulaire
+              style: vertical
+              validate:
+                required: true
+        options:
+          type: tab
+          fields:
+            publishing:
+              fields:
+                header.published:
+                  unset@: true
+                header.date:
+                  unset@: true
+                header.publish_date:
+                  unset@: true
+                header.unpublish_date:
+                  unset@: true
+        

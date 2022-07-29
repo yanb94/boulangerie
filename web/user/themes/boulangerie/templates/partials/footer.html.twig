@@ -1,0 +1,39 @@
+<footer class="footer">
+    <div class="footer-row-one">
+        <div class="action">
+            <div class="logo-footer">
+                Le Bon Pain
+            </div>
+            <ul class="list-action">
+                {% for p in taxonomy.findTaxonomy({'type':'legal'}) %}
+                    <li>
+                        <a href="{{p.url|e}}">{{ p.header.menu|e }}</a>
+                    </li>
+                {% endfor %}
+                <li>
+                    <a href="/contact">Formulaire de contact</a>
+                </li>
+            </ul>
+        </div>
+        <div class="info">
+            <div class="info-cont">
+                <div class="logo-footer">
+                    Nous Contacter
+                </div>
+                <div class="list-info">                    
+                    <span class="label">Adresse:</span>
+                    <span class="data">{{site.info.address}}</span>
+                
+                    <span class="label">Tel:</span>
+                    <span class="data">{{site.info.phone}}</span>
+
+                    <span class="label">Email:</span>
+                    <span class="data">{{site.info.email}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="copyright">
+        <p>© Copyright 2020</p>
+    </div>
+</footer>

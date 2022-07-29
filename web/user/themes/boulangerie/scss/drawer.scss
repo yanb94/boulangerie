@@ -1,0 +1,70 @@
+@import "app.scss";
+
+.drawer
+{
+    width: 250px;
+    // height: calc(100vh - 100px);
+    transform: translateX(-250px);
+    background-color: $primary-main;
+    transition: .5s;
+    position: fixed;
+    top: 100px;
+    bottom: 0;
+    z-index: 6;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    .head
+    {
+        height: 150px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Redressed";
+        font-size: 40px;
+        color: $primary-very-light;
+        background-color: $tertiary-dark;
+    }
+
+    .list
+    {
+        display: grid;
+        grid-template-columns: 100%;
+        row-gap: 15px;
+        padding-left: 30px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+
+        .list-item{
+            a{
+                font-size: 30px;
+                font-family: "Redressed";
+                color: $tertiary-very-dark;
+                text-decoration: none;
+            }
+        }
+    }
+}
+
+.drawer.open
+{
+    transform: translateX(0);
+}
+
+@media(max-width: $breakPointS)
+{
+    .drawer
+    {
+        top: 50px;
+        // min-height: calc(100vh - 50px);
+    }
+}
+
+@media(min-width: $breakPointM)
+{
+    .drawer
+    {
+        display: none!important;
+        
+    }
+}

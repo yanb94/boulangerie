@@ -1,0 +1,10 @@
+enabled: true
+route: /sitemap
+ignore_external: true
+ignore_protected: true
+ignores:
+  - /typography
+  - /contact/thankyou
+whitelist: null
+changefreq: daily
+priority: !!float 1

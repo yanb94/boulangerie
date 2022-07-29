@@ -1,0 +1,69 @@
+# Composer
+.composer
+vendor/*
+!*/vendor/*
+
+# Sass
+.sass-cache
+
+# Grav Specific
+backup/*
+!backup/.*
+cache/*
+!cache/.*
+assets/*
+!assets/.*
+logs/*
+!logs/.*
+images/*
+!images/.*
+user/accounts/*
+!user/accounts/.*
+user/data/*
+!user/data/.*
+!user/data/photo
+!user/data/factures
+user/data/factures/*
+!user/data/factures/.*
+!user/data/qr
+user/data/qr/*
+!user/data/qr/.*
+user/plugins/*
+!user/plugins/panier
+!user/plugins/resize-img
+!user/plugins/admin
+!user/plugins/devtools
+!user/plugins/email
+!user/plugins/error
+!user/plugins/form
+!user/plugins/login
+!user/plugins/markdown-notices
+!user/plugins/problems
+!user/plugins/sitemap
+!user/plugins/tinymce-editor
+!user/plugins/.*
+user/themes/*
+!user/themes/.*
+!user/themes/boulangerie/
+user/localhost/config/security.yaml
+user/config/security.yaml
+user/config/plugins/email.yaml
+.env
+user/plugins/panier/assets/js/env.js
+
+# OS Generated
+.DS_Store*
+ehthumbs.db
+Icon?
+Thumbs.db
+*.swp
+
+# phpstorm
+.idea/*
+
+# testing stuff
+tests/_output/*
+tests/_support/_generated/*
+tests/cache/*
+tests/error.log
+system/templates/testing/*

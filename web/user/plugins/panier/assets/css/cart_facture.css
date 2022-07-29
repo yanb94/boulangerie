@@ -1,0 +1,148 @@
+.liseret
+{
+    height: 30px;
+    background-color: #D38A2C;
+}
+
+.header
+{
+    padding: 30px;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    font-weight:bold;
+    height: 200px;
+    font-family: "Poly";
+}
+
+.header .ref
+{
+    font-size: 40px;
+}
+
+.header .ref .date
+{
+    font-size: 25px;
+    margin-top: 20px;
+}
+
+.header .logo
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header .logo .round
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 70px;
+    color: #A63C14;
+    font-family: "Redressed";
+}
+
+.info
+{
+    padding: 30px;
+    height: 220px;
+    display: grid;
+    grid-template-columns: repeat(2,50%);
+    font-family: "Poly";
+    font-size: 16px;
+    gap: 40px;
+}
+
+.info .firm
+{
+    padding: 10px;
+}
+
+.content{
+    font-family: "Poly";
+    padding: 0 30px;
+}
+
+.content .label
+{
+    background-color: #FFC67D;
+    font-size: 18px;
+    display: grid;
+    grid-template-columns: 40% 20% 20% 20%;  
+    height: 40px;
+    color:#A63C14;
+    font-weight: bold;
+}
+
+.content .label *, .content .row * 
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.content .row
+{
+    font-size: 16px;
+    display: grid;
+    grid-template-columns: 40% 20% 20% 20%;
+    height: 40px;
+    break-inside: avoid!important;
+}
+
+.no-break
+{
+    break-inside: avoid!important;
+}
+
+.content .row:nth-child(odd)
+{
+    background-color: rgba(255, 233, 168, 0.4);
+}
+
+.final > *
+{
+    display: grid;
+    grid-template-columns: 80% 20%;
+    height: 60px;
+}
+
+.final > .ht
+{
+    font-size: 25px;
+}
+
+.final > .ttc
+{
+    font-size: 35px;
+    height: 80px;
+}
+
+.final > .tva
+{
+    font-size: 20px;
+    height: 30px;
+}
+
+.final > * > .label_final
+{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.final > * > .price
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mention
+{
+    margin: 0 30px;
+    border-top: 3px solid #A63C14;
+    padding: 10px;
+    font-family: "Poly";
+    font-size: 12px;
+}

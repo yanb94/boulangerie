@@ -1,0 +1,242 @@
+@import "app.scss";
+
+.contact
+{
+    background-color: $primary-dark;
+    min-height: calc(100vh - 100px);
+    position: relative;
+
+    .image
+    {
+        position: absolute;
+        left:0;
+        background-image: url('./../images/contact.jpg');
+        background-size: cover;
+        z-index: 3;
+        width: 70%;
+        height: 100%;
+    }
+
+    .color
+    {
+        position: absolute;
+        right:0;
+        background-color: rgba($primary-dark, $alpha: .7);
+        z-index: 4;
+        width: 70%;
+        height: 100%;
+    }
+
+    .content
+    {
+        position: absolute;
+        width: 50%;
+        z-index: 5;
+        min-height: 100%;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        right: 0;
+
+        .card
+        {
+            background-color: $primary-main;
+            width: 600px;
+            min-height: 650px;
+            margin-right: 30px;
+            margin-left: 30px;
+            padding: 30px;
+
+            .info
+            {
+                color: $tertiary-very-dark;
+                font-size: 15px;
+                font-family: "Poly";
+            }
+
+            h1
+            {
+                font-size: 70px;
+                font-family: "Redressed";
+                margin:0;
+                color: $tertiary-very-dark;
+                font-weight: normal;
+            }
+
+            .form-label
+            {
+                font-family: "Poly";
+                font-size: 25px;
+                color: $tertiary-very-dark;
+            }
+
+            .form-field
+            {
+                margin-bottom: 15px;
+            }
+
+            .form-label
+            {
+                margin-bottom: 5px;
+            }
+
+            input[type="text"], input[type="email"]
+            {
+                font-size: 25px;
+                width: calc(100% - 10px);
+                background-color: $secondary-very-light;
+                border: none;
+                padding: 5px 10px;
+                border-radius: 10px;
+                color: $tertiary-very-dark;
+                font-family: 'Poly';
+
+                &:focus
+                {
+                    outline: none;
+                }
+            }
+
+            input[type="text"]::placeholder, input[type="email"]::placeholder, textarea::placeholder
+            {
+                font-style: italic;
+                font-family: "Poly";
+                color: $secondary-dark;
+            }
+
+            textarea
+            {
+                border: none;
+                height: 250px;
+                width: calc(100% - 10px);
+                padding: 5px 10px;
+                border-radius: 10px;
+                color: $tertiary-very-dark;
+                font-family: 'Poly';
+                font-size: 25px;
+                background-color: $secondary-very-light;
+
+                &:focus
+                {
+                    outline: none;
+                }
+            }
+
+            .buttons
+            {
+                text-align: right;
+            }
+
+            button[type="submit"]
+            {
+                background-color: $tertiary-very-dark;
+                font-family: "Poly";
+                color: $primary-very-light;
+                border-radius: 25px;
+                width: 200px;
+                font-size: 25px;
+                border:none;
+                padding: 10px;
+
+                transition: .5s;
+
+                &:focus
+                {
+                    outline: none;
+                }
+
+                &:hover
+                {
+                    background-color: $secondary-very-light;
+                    color: $tertiary-very-dark;
+                }
+
+                &:active
+                {
+                    background-color: $tertiary-light;
+                    color: $secondary-very-light;
+                }
+            }
+        }
+    }
+}
+
+@media(max-width: $breakPointXL)
+{
+    .contact
+    {
+        .content
+        {
+            width: 60%;
+        }
+
+        .image
+        {
+            background-image: url('./../images/contactXL.jpg');
+        }
+    }
+}
+
+@media(max-width: $breakPointL)
+{
+    .contact
+    {
+        .content
+        {
+            width: 80%;
+        }
+
+        .image
+        {
+            background-image: url('./../images/contactL.jpg');
+        }
+    }
+}
+
+@media(max-width: $breakPointM)
+{
+    .contact
+    {
+        .image
+        {
+            width: 100%;
+            background-image: url('./../images/contactM.jpg');
+        }
+
+        .content
+        {
+            width: 85%;
+        }
+    }
+}
+
+@media(max-width: $breakPointS)
+{
+    .contact{
+        min-height: calc(100vh - 50px);
+
+        .image
+        {
+            width: 100%;
+            background-image: url('./../images/contactS.jpg');
+        }
+
+        .color
+        {
+            width: 100%;
+        }
+
+        .content
+        {
+            width: 100%;
+            
+            .card
+            {
+                margin-left: 0;
+                margin-right: 0;
+                width: 100%;
+            }
+        }
+    }
+}

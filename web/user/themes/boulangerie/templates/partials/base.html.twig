@@ -1,0 +1,87 @@
+{% set theme_config = attribute(config.themes, config.system.pages.theme) %}
+<!DOCTYPE html>
+<html lang="{{ (grav.language.getActive ?: grav.config.site.default_lang)|e }}">
+<head>
+{% block head %}
+    <meta charset="utf-8" />
+    <title>{% if header.title %}{{ header.title|e }} | {% endif %}{{ site.title|e }}</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% include 'partials/metadata.html.twig' %}
+
+    <link rel="icon" type="image/png" href="{{ url('theme://images/logo.ico')|e }}" />
+    <link rel="canonical" href="{{ page.url(true, true)|e }}" />
+{% endblock head %}
+
+{% block stylesheets %}
+    {# {% do assets.addCss('https://unpkg.com/purecss@1.0.0/build/pure-min.css', 100) %} #}
+    {% do assets.addCss('theme://fontawesome/css/all.min.css', 99) %}
+    {% do assets.addCss('theme://css-compiled/base.css', 98) %}
+{% endblock %}
+
+{% block javascripts %}
+    {# {% do assets.addJs('jquery', 100) %} #}
+    {% do assets.addJs('theme://js/drawer.js',{'group':"bottom"}) %}
+
+    {% if show_panier %}
+        {% do assets.addJs('theme://js/panier-row.js',{'group':"bottom"}) %}
+        {% do assets.addJs('theme://js/panier-ajax.js',{'group':"bottom"}) %}
+        {% do assets.addJs('theme://js/panier-callback.js',{'group':"bottom"}) %}
+        {% do assets.addJs('theme://js/panier.js',{'group':"bottom"}) %}
+    {% endif %}
+
+{% endblock %}
+
+{% block assets deferred %}
+    {{ assets.css()|raw }}
+    {{ assets.js()|raw }}
+{% endblock %}
+</head>
+<body id="top" class="{{ page.header.body_classes|e }}">
+<div class="hide-page"></div>
+<div class="hide-panier"></div>
+{% include "partials/panier.html.twig" %}
+{% block header %}
+    <div class="header">
+        <div class="drawer-button">
+            <div id="open-drawer">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+        <div class="header-logo">
+            <a class="logo left" href="{{ home_url|e }}">
+                {{ config.site.title|e }}
+            </a>
+        </div>
+        {% block header_navigation %}
+        <nav class="main-nav hide-m">
+            {% include 'partials/navigation.html.twig' %}
+        </nav>
+        <div id="panier-cont">
+            <div id="panier">
+                <i class="fas fa-shopping-basket"></i>
+                <div class="nb">{{ panier is empty or panier.nb < 1 ? 0 : panier.nb }}</div>
+            </div>
+        </div>
+        {% endblock %}
+    </div>
+    {% include "partials/drawer.html.twig" %}
+{% endblock %}
+
+{% block body %}
+    <section id="body">
+        {% block content %}{% endblock %}
+    </section>
+{% endblock %}
+
+{% block footer %}
+    {% include "partials/footer.html.twig" %}
+{% endblock %}
+
+{% block bottom %}
+    {{ assets.js('bottom')|raw }}
+{% endblock %}
+
+</body>
+</html>
